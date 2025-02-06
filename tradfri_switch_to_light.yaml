@@ -122,7 +122,7 @@ action:
           - service: light.turn_on
             data:
               brightness_pct: >
-                {{(state_attr(target_light, 'brightness_pct')|float * 1.4)|int }}
+                {{ state_attr(target_light, 'brightness_pct') | int + 10 }}
             target: !input target_light
       - conditions:
           - condition: trigger
@@ -132,7 +132,7 @@ action:
           - service: light.turn_on
             data:
               brightness_pct: >
-                {{(state_attr(target_light, 'brightness_pct')|float * 0.71)|int }}
+                {{ state_attr(target_light, 'brightness_pct') | int - 10 }}
             target: !input target_light
       - conditions:
           - condition: trigger
