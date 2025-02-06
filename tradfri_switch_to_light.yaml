@@ -121,8 +121,7 @@ action:
         sequence:
           - service: light.turn_on
             data:
-              brightness_pct: >
-                {{ state_attr(target_light, 'brightness_pct') | int + 10 }}
+              brightness_step_pct: 10
             target: !input target_light
       - conditions:
           - condition: trigger
@@ -131,8 +130,7 @@ action:
         sequence:
           - service: light.turn_on
             data:
-              brightness_pct: >
-                {{ state_attr(target_light, 'brightness_pct') | int - 10 }}
+              brightness_step_pct: -10
             target: !input target_light
       - conditions:
           - condition: trigger
