@@ -45,6 +45,12 @@ trigger:
   trigger: device
   device_id: !input source_switch_action
   type: action
+  subtype: "brightness_up_click"
+  id: "brightness_up_click"  
+- domain: mqtt
+  trigger: device
+  device_id: !input source_switch_action
+  type: action
   subtype: "brightness_move_up"
   id: "brightness_move_up"  
 - domain: mqtt
@@ -53,6 +59,12 @@ trigger:
   type: action
   subtype: "brightness_up_hold"
   id: "brightness_move_up" 
+- domain: mqtt
+  trigger: device
+  device_id: !input source_switch_action
+  type: action
+  subtype: "brightness_down_click"
+  id: "brightness_down_click"  
 - domain: mqtt
   trigger: device
   device_id: !input source_switch_action
@@ -101,6 +113,26 @@ action:
         sequence:
           - service: light.toggle
             data: {}
+            target: !input target_light
+      - conditions:
+          - condition: trigger
+            id:
+              - "brightness_up_click"
+        sequence:
+          - service: light.turn_on
+            data:
+              brightness_pct: >
+                {{(state_attr(target_light, 'brightness_pct')|float * 1.4)|int }}
+            target: !input target_light
+      - conditions:
+          - condition: trigger
+            id:
+              - "brightness_down_click"
+        sequence:
+          - service: light.turn_on
+            data:
+              brightness_pct: >
+                {{(state_attr(target_light, 'brightness_pct')|float * 0.71)|int }}
             target: !input target_light
       - conditions:
           - condition: trigger
