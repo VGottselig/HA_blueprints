@@ -33,6 +33,12 @@ trigger:
   trigger: device
   device_id: !input source_switch_action
   type: action
+  subtype: "toggle "
+  id: "on"  
+- domain: mqtt
+  trigger: device
+  device_id: !input source_switch_action
+  type: action
   subtype: "off"
   id: "off"  
 - domain: mqtt
@@ -45,13 +51,37 @@ trigger:
   trigger: device
   device_id: !input source_switch_action
   type: action
+  subtype: "brightness_up_hold"
+  id: "brightness_move_up" 
+- domain: mqtt
+  trigger: device
+  device_id: !input source_switch_action
+  type: action
   subtype: "brightness_move_down"
   id: "brightness_move_down"  
 - domain: mqtt
   trigger: device
   device_id: !input source_switch_action
   type: action
+  subtype: "brightness_down_hold"
+  id: "brightness_move_down"  
+- domain: mqtt
+  trigger: device
+  device_id: !input source_switch_action
+  type: action
   subtype: "brightness_stop"
+  id: "brightness_stop"  
+- domain: mqtt
+  trigger: device
+  device_id: !input source_switch_action
+  type: action
+  subtype: "brightness_up_release"
+  id: "brightness_stop"  
+- domain: mqtt
+  trigger: device
+  device_id: !input source_switch_action
+  type: action
+  subtype: "brightness_down_release"
   id: "brightness_stop"  
 condition: []
 action:
