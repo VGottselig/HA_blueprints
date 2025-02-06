@@ -33,7 +33,7 @@ trigger:
   trigger: device
   device_id: !input source_switch_action
   type: action
-  subtype: "toggle "
+  subtype: "toggle"
   id: "on"  
 - domain: mqtt
   trigger: device
